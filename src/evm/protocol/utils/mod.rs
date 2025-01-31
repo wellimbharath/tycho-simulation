@@ -1,4 +1,4 @@
-pub(crate) mod uniswap;
+pub mod uniswap;
 
 use alloy_primitives::Address;
 use tycho_core::Bytes;
@@ -9,7 +9,7 @@ use crate::protocol::errors::SimulationError;
 ///
 /// Checks the length of the `Bytes` before attempting to convert, and returns a `SimulationError`
 /// if not 20 bytes long.
-pub(crate) fn bytes_to_address(address: &Bytes) -> Result<Address, SimulationError> {
+pub fn bytes_to_address(address: &Bytes) -> Result<Address, SimulationError> {
     if address.len() == 20 {
         Ok(Address::from_slice(address))
     } else {

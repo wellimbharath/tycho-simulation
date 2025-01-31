@@ -33,9 +33,9 @@ impl ERC20Slots {
     }
 }
 
-pub(crate) type Overwrites = HashMap<SlotId, U256>;
+pub type Overwrites = HashMap<SlotId, U256>;
 
-pub(crate) struct ERC20OverwriteFactory {
+pub struct ERC20OverwriteFactory {
     token_address: Address,
     overwrites: Overwrites,
     balance_slot: SlotId,
@@ -130,7 +130,7 @@ type U256Return = U256;
 ///   testing both compiler configurations.
 /// - Once the balance slot is found, it uses the detected compiler to search for the allowance
 ///   slot, which is dependent on the balance slot.
-pub(crate) fn brute_force_slots<D: EngineDatabaseInterface + Clone + Debug>(
+pub fn brute_force_slots<D: EngineDatabaseInterface + Clone + Debug>(
     token_addr: &Address,
     block: &BlockHeader,
     engine: &SimulationEngine<D>,

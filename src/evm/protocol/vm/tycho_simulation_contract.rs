@@ -55,8 +55,8 @@ where
     <D as DatabaseRef>::Error: std::fmt::Debug,
     <D as EngineDatabaseInterface>::Error: std::fmt::Debug,
 {
-    pub(crate) address: Address,
-    pub(crate) engine: SimulationEngine<D>,
+    pub address: Address,
+    pub engine: SimulationEngine<D>,
 }
 
 impl<D: EngineDatabaseInterface + Clone + Debug> TychoSimulationContract<D>

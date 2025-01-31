@@ -1,40 +1,40 @@
 use alloy_primitives::{I256, U256};
 use tycho_core::Bytes;
 
-pub(crate) mod liquidity_math;
+pub mod liquidity_math;
 mod solidity_math;
-pub(crate) mod sqrt_price_math;
-pub(crate) mod swap_math;
-pub(crate) mod tick_list;
-pub(crate) mod tick_math;
+pub mod sqrt_price_math;
+pub mod swap_math;
+pub mod tick_list;
+pub mod tick_math;
 
 #[derive(Debug)]
-pub(crate) struct SwapState {
-    pub(crate) amount_remaining: I256,
-    pub(crate) amount_calculated: I256,
-    pub(crate) sqrt_price: U256,
-    pub(crate) tick: i32,
-    pub(crate) liquidity: u128,
+pub struct SwapState {
+    pub amount_remaining: I256,
+    pub amount_calculated: I256,
+    pub sqrt_price: U256,
+    pub tick: i32,
+    pub liquidity: u128,
 }
 
 #[derive(Debug)]
-pub(crate) struct StepComputation {
-    pub(crate) sqrt_price_start: U256,
-    pub(crate) tick_next: i32,
-    pub(crate) initialized: bool,
-    pub(crate) sqrt_price_next: U256,
-    pub(crate) amount_in: U256,
-    pub(crate) amount_out: U256,
-    pub(crate) fee_amount: U256,
+pub struct StepComputation {
+    pub sqrt_price_start: U256,
+    pub tick_next: i32,
+    pub initialized: bool,
+    pub sqrt_price_next: U256,
+    pub amount_in: U256,
+    pub amount_out: U256,
+    pub fee_amount: U256,
 }
 
 #[derive(Debug)]
-pub(crate) struct SwapResults {
-    pub(crate) amount_calculated: I256,
-    pub(crate) sqrt_price: U256,
-    pub(crate) liquidity: u128,
-    pub(crate) tick: i32,
-    pub(crate) gas_used: U256,
+pub struct SwapResults {
+    pub amount_calculated: I256,
+    pub sqrt_price: U256,
+    pub liquidity: u128,
+    pub tick: i32,
+    pub gas_used: U256,
 }
 
 /// Converts a slice of bytes representing a big-endian 24-bit signed integer
@@ -45,7 +45,7 @@ pub(crate) struct SwapResults {
 ///
 /// # Returns
 /// * The 32-bit signed integer representation of the input bytes.
-pub(crate) fn i24_be_bytes_to_i32(val: &Bytes) -> i32 {
+pub fn i24_be_bytes_to_i32(val: &Bytes) -> i32 {
     let bytes_slice = val.as_ref();
     let bytes_len = bytes_slice.len();
     let mut result = 0i32;

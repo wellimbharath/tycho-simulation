@@ -417,7 +417,7 @@ impl From<BlockHeader> for tycho_simulation::evm::engine_db::simulation_db::Bloc
 
 #[pyclass]
 #[derive(Debug)]
-pub(crate) struct SimulationErrorDetails {
+pub struct SimulationErrorDetails {
     #[pyo3(get)]
     pub data: String,
     #[pyo3(get)]

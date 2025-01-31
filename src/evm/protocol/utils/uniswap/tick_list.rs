@@ -6,9 +6,9 @@ use super::tick_math;
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub struct TickInfo {
-    pub(crate) index: i32,
-    pub(crate) net_liquidity: i128,
-    pub(crate) sqrt_price: U256,
+    pub index: i32,
+    pub net_liquidity: i128,
+    pub sqrt_price: U256,
 }
 
 impl TickInfo {
@@ -27,12 +27,12 @@ impl PartialOrd for TickInfo {
 }
 
 #[derive(Debug)]
-pub(crate) struct TickListError {
-    pub(crate) kind: TickListErrorKind,
+pub struct TickListError {
+    pub kind: TickListErrorKind,
 }
 
 #[derive(Debug, PartialEq)]
-pub(crate) enum TickListErrorKind {
+pub enum TickListErrorKind {
     NotFound,
     BelowSmallest,
     AtOrAboveLargest,
@@ -40,13 +40,13 @@ pub(crate) enum TickListErrorKind {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-pub(crate) struct TickList {
+pub struct TickList {
     tick_spacing: u16,
     ticks: Vec<TickInfo>,
 }
 
 impl TickList {
-    pub(crate) fn from(spacing: u16, ticks: Vec<TickInfo>) -> Self {
+    pub fn from(spacing: u16, ticks: Vec<TickInfo>) -> Self {
         let tick_list = TickList { tick_spacing: spacing, ticks };
         let valid = tick_list.valid_ticks();
         if valid.is_ok() {
@@ -113,7 +113,7 @@ impl TickList {
         }
     }
 
-    pub(crate) fn set_tick_liquidity(&mut self, tick: i32, liquidity: i128) {
+    pub fn set_tick_liquidity(&mut self, tick: i32, liquidity: i128) {
         match self
             .ticks
             .binary_search_by(|t| t.index.cmp(&tick))
@@ -152,7 +152,7 @@ impl TickList {
         tick >= maximum
     }
 
-    pub(crate) fn get_tick(&self, index: i32) -> Result<&TickInfo, TickListError> {
+    pub fn get_tick(&self, index: i32) -> Result<&TickInfo, TickListError> {
         match self
             .ticks
             .binary_search_by(|el| el.index.cmp(&index))
@@ -196,7 +196,7 @@ impl TickList {
         }
     }
 
-    pub(crate) fn next_initialized_tick_within_one_word(
+    pub fn next_initialized_tick_within_one_word(
         &self,
         tick: i32,
         lte: bool,
